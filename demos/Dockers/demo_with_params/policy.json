@@ -1,0 +1,40 @@
+{"supa-policy": {
+                "supa-policy-validity-period": {
+                        "start": "2016-12-20T08:42:57.527404Z"
+                },
+                "supa-policy-target": {
+                        "domainName": "systemZ",
+                        "subNetwork": "192.168.1.1",
+                        "instanceName": ["devstack", "devstack2"],
+                        "topicName": "singleventwithactionparams"
+
+                },
+                "supa-policy-statement": {
+                        "event": {
+                                "event-name": "test_event",
+                                "event-value-type": "float",
+                                "event-value": "0.0",
+                                "instanceName": [""]
+                        },
+                        "condition": {
+                                "condition-name": "test_event.multipolicy1",
+                                "condition-operator": ">",
+                                "condition-threshold": "0"
+                        },
+                        "action": {
+                                "action-name": "reroute_vnf",
+                                "action-host": "http://192.168.10.9:8080",
+                                "action-type": "test-action",
+                                "action-param":[ {
+                                        "param-type": "topology",
+                                        "param-value": "10",
+                                        "instanceName": ["1","2"]
+                                 },{
+                                        "param-type": "topology2",
+                                        "param-value": "$event-value",
+                                        "instanceName": ["$instanceName"]
+                                 }]
+                        }
+                }
+        }
+}

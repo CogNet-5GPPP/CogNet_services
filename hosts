@@ -1,0 +1,11 @@
+# List of CogNet hosts
+
+XXX.XXX.XXX.XXX spark_master 
+XXX.XXX.XXX.XXX spark_slaves1 
+XXX.XXX.XXX.XXX spark_slaves2 
+XXX.XXX.XXX.XXX oscon 
+XXX.XXX.XXX.XXX odl 
+XXX.XXX.XXX.XXX monasca 
+XXX.XXX.XXX.XXX docker 
+XXX.XXX.XXX.XXX kafka 
+XXX.XXX.XXX.XXX policy 

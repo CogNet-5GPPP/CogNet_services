@@ -1,0 +1,61 @@
+{"supa-policy": {
+  "supa-policy-validity-period": {
+    "start": "2017-05-16T08:42:57.527404Z"
+  },
+  "supa-policy-target": {
+    "domainName": "systemOpNFV",
+    "subNetwork": "192.168.1.1",
+    "instanceName": ["wit"],
+    "topicName": "completetestdemo"
+  },
+  "supa-policy-statement": {
+    "event": [{
+      "event-name": "threat.flow",
+      "event-value-type": "float",
+      "event-value": "9.5",
+      "instanceName": ["wit:vnf0"]
+    }, {
+      "event-name": "threat.ip",
+      "event-value-type": "char",
+      "event-value": "192.168.1.1",
+      "instanceName": ["wit:vnf1"]
+    }, {
+      "event-name": "threat.test_perc",
+      "event-value-type": "int",
+      "event-value": "25",
+      "instanceName": ["wit:vnf2"]
+    },
+   {
+      "event-name": "threat.protocol",
+      "event-value-type": "char",
+      "event-value": "UDP",
+      "instanceName": ["wit:vnf3"]
+    }],
+    "condition": {
+      "condition-name": "threat.test_perc.high",
+      "condition-operator": ">",
+      "condition-threshold": "50"
+    },
+    "action": {
+      "action-name": "firewall_vnf",
+      "action-host": "http://192.168.10.9:8080/",
+      "action-type": " firewall_vnf",
+        "action-param":[ 
+          {
+          "param-type": "duration",
+          "param-value":"$event-value$threat.flow",
+          "instanceName": ["$instanceName$threat.flow"]
+        },{
+          "param-type": "ip",
+          "param-value": "$event-value$threat.ip",
+          "instanceName": ["$instanceName$threat.ip"]
+        }, {
+          "param-type": "percentage",
+          "param-value": "30",
+          "instanceName": ["$instanceName$test_perc.high"]
+        }, {
+          "param-type": "protocol",
+          "param-value": "$event-value$threat.protocol",
+          "instanceName": ["$instanceName$threat.protocol"]
+        }]
+}}}}

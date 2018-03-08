@@ -1,0 +1,134 @@
+- name: clone and update github repository that contains demos
+  hosts: docker
+  remote_user: "{{ansible_user}}"
+  become: yes
+  tasks:
+
+    - name: clone github repository
+      git:
+        repo: git@github.com:CogNet-5GPPP/demos_public.git
+        dest: /home/cognet/repo
+        accept_hostkey: yes
+        key_file: /home/cognet/rsa
+        update: yes
+        force: yes
+
+- name: Building metrics_generator image
+  hosts: docker
+  remote_user: "{{ansible_user}}"
+  become: yes
+  tasks:
+
+    - name: python dependencies
+      pip: name={{item}} version=1.9.0
+      with_items:
+
+      - docker-py
+
+    - name: build the image metrics_generator
+      docker_image: >
+        name=complete_demo_tutorial_metrics_generator
+        tag=complete_tutorial
+        path=/home/cognet/repo/demos/Dockers/demo_complete/metrics_generator
+        state=present
+        api_version=1.18
+        force=true
+  
+
+- name: Restart metrics generator container
+  hosts: docker
+  remote_user: "{{ansible_user}}"
+  become: yes
+  vars:
+    hosts_ip: "{ \"spark_master\":\"{{ hostvars.spark_master.ansible_ssh_host }}\",\"spark_slaves1\":\"{{ hostvars.spark_slaves1.ansible_ssh_host }}\", \"spark_slaves2\":\"{{ hostvars.spark_slaves2.ansible_ssh_host }}\", \"oscon\":\"{{ hostvars.oscon.ansible_ssh_host }}\",\"odl\":\"{{ hostvars.odl.ansible_ssh_host }}\",\"monasca\":\"{{ hostvars.monasca.ansible_ssh_host }}\",\"docker\":\"{{ hostvars.docker.ansible_ssh_host }}\",\"kafka\":\"{{ hostvars.kafka.ansible_ssh_host }}\",\"policy\":\"{{ hostvars.policy.ansible_ssh_host }}\"}"
+  tasks:
+    - name: Remove container
+      docker_container: >
+        name=docker_complete_demo_metrics_generator
+        image="complete_demo_tutorial_metrics_generator:complete_tutorial"
+        state=absent
+        api_version=1.18
+    - name: Create Container
+      docker_container: >
+        name=docker_complete_demo_metrics_generator
+        image="complete_demo_tutorial_metrics_generator:complete_tutorial"
+        state=started
+        etc_hosts="{{ hosts_ip }}"
+        api_version=1.18
+
+
+- name: Build machine_learning image
+  hosts: docker
+  remote_user: "{{ansible_user}}"
+  become: yes
+  tasks:
+
+    - name: python dependencies
+      pip: name={{item}} version=1.9.0
+      with_items:
+
+      - docker-py
+
+    - name: build the image for machine_learning
+      docker_image: >
+        name=complete_demo_ml_processor
+        tag=complete_tutorial
+        path=/home/cognet/repo/demos/Dockers/demo_complete/ml_processor
+        state=present
+        api_version=1.18
+        force=true
+  
+
+- name: Restart container for machine_learning
+  hosts: docker
+  remote_user: "{{ansible_user}}"
+  become: yes
+  vars:
+    hosts_ip: "{ \"spark_master\":\"{{ hostvars.spark_master.ansible_ssh_host }}\",\"spark_slaves1\":\"{{ hostvars.spark_slaves1.ansible_ssh_host }}\", \"spark_slaves2\":\"{{ hostvars.spark_slaves2.ansible_ssh_host }}\", \"oscon\":\"{{ hostvars.oscon.ansible_ssh_host }}\",\"odl\":\"{{ hostvars.odl.ansible_ssh_host }}\",\"monasca\":\"{{ hostvars.monasca.ansible_ssh_host }}\",\"docker\":\"{{ hostvars.docker.ansible_ssh_host }}\",\"kafka\":\"{{ hostvars.kafka.ansible_ssh_host }}\",\"policy\":\"{{ hostvars.policy.ansible_ssh_host }}\"}"
+  tasks:
+    - name: Remove previous container
+      docker_container: >
+        name=complete_demo_ml_processor_container
+        image="complete_demo_ml_processor:complete_tutorial"
+        state=absent
+        api_version=1.18
+    - name: Create and start container for machine learning
+      docker_container: >
+        name=complete_demo_ml_processor_container
+        image="complete_demo_ml_processor:complete_tutorial"
+        state=started
+        etc_hosts="{{ hosts_ip }}"
+        api_version=1.18
+
+
+    - pause: 
+        minutes: 5
+
+    - name: Stop machine learning container
+      docker_container: >
+        name=complete_demo_ml_processor_container
+        image="complete_demo_ml_processor:complete_tutorial"
+        state=absent
+        api_version=1.18
+
+
+- name: Send log to user
+  hosts: docker
+  vars:
+    java_class: completetestdemo_threat.test_perc.high
+    log_link: "http://policy/logger/export.php?op=export&uid=-1&filter=syslogtag%3A%3D{{java_class}}&exporttype=CVS"
+
+  tasks:
+    - name: download log file
+      get_url: url={{log_link}} dest=/tmp/{{java_class}}.csv mode=0777
+
+    - name: send email to user
+      mail:
+        host: smtp.gmail.com
+        port: 587
+        username: yourgmaillogaccount@gmail.com
+        password: yourgmailpassword
+        to: your@email.com
+        subject: Ansible-report
+        body: "Your log"
+        attach: /tmp/{{java_class}}.csv

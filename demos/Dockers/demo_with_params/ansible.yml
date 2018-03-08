@@ -1,0 +1,57 @@
+- name: clone and update github repository
+  hosts: docker
+  remote_user: "{{ansible_user}}"
+  become: yes
+  tasks:
+
+    - name: clone github repository
+      git:
+        repo: git@github.com:CogNet-5GPPP/demos_public.git
+        dest: /home/cognet/repo
+        accept_hostkey: yes
+        key_file: /home/cognet/rsa
+        update: yes
+        force: yes
+
+- name: Build an image with the docker_image module
+  hosts: docker
+  remote_user: "{{ansible_user}}"
+  become: yes
+  tasks:
+
+    - name: python dependencies
+      pip: name={{item}} version=1.9.0
+      with_items:
+
+      - docker-py
+
+    - name: build the image
+      docker_image: >
+        name=tutorial_params
+        tag=policydemo
+        path=/home/cognet/repo/demos/Dockers/tutorial_with_param
+        state=present
+        api_version=1.18
+        force=true
+  
+
+- name: Create a data container
+  hosts: docker
+  remote_user: "{{ansible_user}}"
+  become: yes
+  vars:
+    hosts_ip: "{ \"spark_master\":\"{{ hostvars.spark_master.ansible_ssh_host }}\",\"spark_slaves1\":\"{{ hostvars.spark_slaves1.ansible_ssh_host }}\", \"spark_slaves2\":\"{{ hostvars.spark_slaves2.ansible_ssh_host }}\", \"oscon\":\"{{ hostvars.oscon.ansible_ssh_host }}\",\"odl\":\"{{ hostvars.odl.ansible_ssh_host }}\",\"monasca\":\"{{ hostvars.monasca.ansible_ssh_host }}\",\"docker\":\"{{ hostvars.docker.ansible_ssh_host }}\",\"kafka\":\"{{ hostvars.kafka.ansible_ssh_host }}\",\"policy\":\"{{ hostvars.policy.ansible_ssh_host }}\"}"
+  tasks:
+    - name: Remove container
+      docker_container: >
+        name=docker_params
+        image="tutorial_params:policydemo"
+        state=absent
+        api_version=1.18
+    - name: Create Container
+      docker_container: >
+        name=docker_params
+        image="tutorial_params:policydemo"
+        state=started
+        etc_hosts="{{ hosts_ip }}"
+        api_version=1.18

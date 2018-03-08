@@ -1,0 +1,41 @@
+{"supa-policy": {
+                "supa-policy-validity-period": {
+                        "start": "2016-12-20T08:42:57.527404Z"
+                },
+                "supa-policy-target": {
+                        "domainName": "systemZ",
+                        "subNetwork": "192.168.1.1",
+                        "instanceName": ["devstack", "devstack2"],
+                        "topicName": "demo1"
+                },
+                "supa-policy-statement": {
+                        "event": {
+                                "event-name": "cpu.user_perc",
+                                "event-value-type": "float",
+                                "event-value": "11",
+                                "instanceName": ["compute1", "compute2"]
+
+                        },
+                        "condition": {
+                                "condition-name": "cpu.user_perc_high",
+                                "condition-operator": ">",
+                                "condition-threshold": "10.9"
+                        },
+                        "action": {
+                                "action-name": "cpu_performance",
+                                "action-host": "http://host.com/",
+                                "action-type": "deploy-topology",
+                                "action-param":[ {
+                                        "param-type": "topology",
+                                        "param-value": "ring",
+                                        "instanceName": ["compute1", "compute2"]
+                                },{
+                                        "param-type": "size",
+                                        "param-value": "10",
+                                        "instanceName": ["compute1", "compute2"]
+                                }]
+                        }
+                }
+        }
+}
+
