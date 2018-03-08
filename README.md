@@ -317,7 +317,6 @@ If you push duplicated metrics in Monasca, the system will publish them, there i
 
 
 ### License
-[Top][]
 
 Copyright 2016 Vicomtech.
 
