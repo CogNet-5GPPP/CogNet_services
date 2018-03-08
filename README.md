@@ -315,7 +315,16 @@ More info in [https://github.com/openstack/monasca-api/blob/master/docs/monasca-
 
 If you push duplicated metrics in Monasca, the system will publish them, there is no duplicated messages management system. They will be sent to Kafka and Kafka will send as new messages in the topic "metrics" with different "creation_time" values.
 
-#
+
+### License
+[Top][]
+
+Copyright 2016 Vicomtech.
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0.
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+
 [Integration Overview]:#integration-overview
 [CogNet Overview]:#cognet-overview
 [Processing modes of Machine Learning algorithms]:#processing-modes-of-machine-learning-algorithms
