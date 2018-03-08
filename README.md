@@ -9,9 +9,9 @@
 
 
 The main data compiled inside this repository includes:
-* all the files employed in the different demos with a specific structure to be employed by the Jenkins system to deploy and exercise the demo [https://github.com/CogNet-5GPPP/demos_public/tree/master/demos/Dockers](https://github.com/CogNet-5GPPP/demos_public/tree/master/demos/Dockers)
-* a set of sample codes to integrate a demo on top of the CogNet Common Infrastructure [https://github.com/CogNet-5GPPP/demos_public/tree/master/demos/Dockers](https://github.com/CogNet-5GPPP/demos_public/tree/master/demos/Dockers)
-* a set of tools to debug and log the components involved in a demo [https://github.com/CogNet-5GPPP/demos_public/tree/master/tools](https://github.com/CogNet-5GPPP/demos_public/tree/master/tools)
+* all the files employed in the different demos with a specific structure to be employed by the Jenkins system to deploy and exercise the demo [https://github.com/CogNet-5GPPP/CogNet_services/tree/master/demos/Dockers](https://github.com/CogNet-5GPPP/CogNet_services/tree/master/demos/Dockers)
+* a set of sample codes to integrate a demo on top of the CogNet Common Infrastructure [https://github.com/CogNet-5GPPP/CogNet_services/tree/master/demos/Dockers](https://github.com/CogNet-5GPPP/CogNet_services/tree/master/demos/Dockers)
+* a set of tools to debug and log the components involved in a demo [https://github.com/CogNet-5GPPP/CogNet_services/tree/master/tools](https://github.com/CogNet-5GPPP/CogNet_services/tree/master/tools)
 
 This file also contains the F.A.Q. about CogNet common infrastructure
 
@@ -52,7 +52,7 @@ Once the Policy Engine Instance (PMI) has been deployed the [L]CSE forwards all 
 ![Policy Engine inputs and outputs](res/SimplePolicyEngine.png "Policy Engine inputs and outputs")
 
 Each demonstrator brings a [L]CSE tuned to intrinsic features from the metrics and with a range of possible actions to be triggered accordingly.
-The metrics ingest and the action recommendation are embodied in Apis_public which decouple the CogNet control loop from the analysed and optimized system.
+The metrics ingest and the action recommendation are embodied in Apis which decouple the CogNet control loop from the analysed and optimized system.
 
 ## Common Infrastructure Integration
 
@@ -83,7 +83,7 @@ This way, the integration of a working demo has to follow this general steps:
 3. Update your [L]CSE code to push ML results to the policy that is listening, sending a SUPA ECA document to the Kafka "demoX" topic
 4. Compile the [L]CSE in a Docker image
 5. Create and Ansible playbook to deploy and run the [L]CSE
-6. Submit all the files to the demos_public github following the established file structure and guidelines [https://github.com/CogNet-5GPPP/demos_public/tree/master/demos/Dockers](https://github.com/CogNet-5GPPP/demos_public/tree/master/demos/Dockers)
+6. Submit all the files to the CogNet_services github following the established file structure and guidelines [https://github.com/CogNet-5GPPP/CogNet_services/tree/master/demos/Dockers](https://github.com/CogNet-5GPPP/CogNet_services/tree/master/demos/Dockers)
 7. Setup in Jenkins the playbook to exercise de demo
 8. Check the activity in the Policy Monitor
 
@@ -92,12 +92,12 @@ This way, the integration of a working demo has to follow this general steps:
 * Current hostame/IP file comprising all the machines in the Common Infrastructure: [hosts](hosts)
 * Policy Engine Monitor: [http://[policyIPaddress_from_hosts_file]/logger/](http://[policyIPaddress_from_hosts_file]/logger/)
 * CogNet Common Infrastructure: [https://github.com/CogNet-5GPPP/Agnostic_Cloud_CI_public](https://github.com/CogNet-5GPPP/Agnostic_Cloud_CI_public)
-* Ansible helloworld: [https://github.com/CogNet-5GPPP/Apis_public_public/tree/master/helloworlds/ansible](https://github.com/CogNet-5GPPP/Apis_public_public/tree/master/helloworlds/ansible)
-* Influxdb helloworld: [https://github.com/CogNet-5GPPP/Apis_public_public/tree/master/helloworlds/influxdb](https://github.com/CogNet-5GPPP/Apis_public_public/tree/master/helloworlds/influxdb)
-* Kafka helloworld: [https://github.com/CogNet-5GPPP/Apis_public_public/tree/master/helloworlds/kafka](https://github.com/CogNet-5GPPP/Apis_public_public/tree/master/helloworlds/kafka)
-* Monasca helloworld: [https://github.com/CogNet-5GPPP/Apis_public_public/tree/master/helloworlds/monasca](https://github.com/CogNet-5GPPP/Apis_public_public/tree/master/helloworlds/monasca)
-* Create new policy helloworld: [https://github.com/CogNet-5GPPP/Apis_public_public/tree/master/helloworlds/policy](https://github.com/CogNet-5GPPP/Apis_public_public/tree/master/helloworlds/policy)
-* Some basic tools:[https://github.com/CogNet-5GPPP/demos_public/tree/master/tools](https://github.com/CogNet-5GPPP/demos_public/tree/master/tools)
+* Ansible helloworld: [https://github.com/CogNet-5GPPP/CogNet_Apis/tree/master/helloworlds/ansible](https://github.com/CogNet-5GPPP/CogNet_Apis/tree/master/helloworlds/ansible)
+* Influxdb helloworld: [https://github.com/CogNet-5GPPP/CogNet_Apis/tree/master/helloworlds/influxdb](https://github.com/CogNet-5GPPP/CogNet_Apis/tree/master/helloworlds/influxdb)
+* Kafka helloworld: [https://github.com/CogNet-5GPPP/CogNet_Apis/tree/master/helloworlds/kafka](https://github.com/CogNet-5GPPP/CogNet_Apis/tree/master/helloworlds/kafka)
+* Monasca helloworld: [https://github.com/CogNet-5GPPP/CogNet_Apis/tree/master/helloworlds/monasca](https://github.com/CogNet-5GPPP/CogNet_Apis/tree/master/helloworlds/monasca)
+* Create new policy helloworld: [https://github.com/CogNet-5GPPP/CogNet_Apis/tree/master/helloworlds/policy](https://github.com/CogNet-5GPPP/CogNet_Apis/tree/master/helloworlds/policy)
+* Some basic tools:[https://github.com/CogNet-5GPPP/CogNet_services/tree/master/tools](https://github.com/CogNet-5GPPP/CogNet_services/tree/master/tools)
 
 
 
@@ -108,14 +108,14 @@ This way, the integration of a working demo has to follow this general steps:
 Follow these steps:
 
 1. Push data to the data collector. This means to:
-* push data to Monasca [https://github.com/CogNet-5GPPP/Apis_public_public/tree/master/helloworlds/monasca](https://github.com/CogNet-5GPPP/Apis_public_public/tree/master/helloworlds/monasca)
-* push data to Kafka "metrics" topic [https://github.com/CogNet-5GPPP/Apis_public_public/tree/master/helloworlds/kafka](https://github.com/CogNet-5GPPP/Apis_public_public/tree/master/helloworlds/kafka)
-* push data to InfluxDB  [https://github.com/CogNet-5GPPP/Apis_public_public/tree/master/helloworlds/influxdb](https://github.com/CogNet-5GPPP/Apis_public_public/tree/master/helloworlds/influxdb)
+* push data to Monasca [https://github.com/CogNet-5GPPP/CogNet_Apis/tree/master/helloworlds/monasca](https://github.com/CogNet-5GPPP/CogNet_Apis/tree/master/helloworlds/monasca)
+* push data to Kafka "metrics" topic [https://github.com/CogNet-5GPPP/CogNet_Apis/tree/master/helloworlds/kafka](https://github.com/CogNet-5GPPP/CogNet_Apis/tree/master/helloworlds/kafka)
+* push data to InfluxDB  [https://github.com/CogNet-5GPPP/CogNet_Apis/tree/master/helloworlds/influxdb](https://github.com/CogNet-5GPPP/CogNet_Apis/tree/master/helloworlds/influxdb)
 
 2. Modify the Machine Learning algorithm to get data accordingly from Kafka "metrics" topic or from InfluxDB depending if your code is working in batch or streaming mode.
 You have to get data from the data collector. This means to:
-* get data from Kafka "metrics" topic [https://github.com/CogNet-5GPPP/Apis_public_public/tree/master/helloworlds/kafka](https://github.com/CogNet-5GPPP/Apis_public_public/tree/master/helloworlds/kafka)
-* get data from InfluxDB  [https://github.com/CogNet-5GPPP/Apis_public_public/tree/master/helloworlds/influxdb](https://github.com/CogNet-5GPPP/Apis_public_public/tree/master/helloworlds/influxdb)
+* get data from Kafka "metrics" topic [https://github.com/CogNet-5GPPP/CogNet_Apis/tree/master/helloworlds/kafka](https://github.com/CogNet-5GPPP/CogNet_Apis/tree/master/helloworlds/kafka)
+* get data from InfluxDB  [https://github.com/CogNet-5GPPP/CogNet_Apis/tree/master/helloworlds/influxdb](https://github.com/CogNet-5GPPP/CogNet_Apis/tree/master/helloworlds/influxdb)
 
 _Monasca will automatically push every incoming data to InfluxDB and Kafka "metrics" topic_
 
@@ -123,13 +123,13 @@ _Monasca will automatically push every incoming data to InfluxDB and Kafka "metr
 
 4. Modify the Machine Learning algorithm to get data accordingly from Kafka "demoX" topic or from InfluxDB depending if your code is working in batch or streaming mode.
 
-5. Packetize your ML algorithm into a Docker following the files structure of the samples in your repo, for example: [https://github.com/CogNet-5GPPP/demos_public/tree/master/demos/Dockers](https://github.com/CogNet-5GPPP/demos_public/tree/master/demos/Dockers)
+5. Packetize your ML algorithm into a Docker following the files structure of the samples in your repo, for example: [https://github.com/CogNet-5GPPP/CogNet_services/tree/master/demos/Dockers](https://github.com/CogNet-5GPPP/CogNet_services/tree/master/demos/Dockers)
 
-6. Create and Ansible playbook to deploy and run the [L]CSE following the sample in your repo, for example: [https://github.com/CogNet-5GPPP/demos_public/tree/master/demos/Dockers](https://github.com/CogNet-5GPPP/demos_public/tree/master/demos/Dockers)
+6. Create and Ansible playbook to deploy and run the [L]CSE following the sample in your repo, for example: [https://github.com/CogNet-5GPPP/CogNet_services/tree/master/demos/Dockers](https://github.com/CogNet-5GPPP/CogNet_services/tree/master/demos/Dockers)
 
-7. Submit all the code and files to Github following the sample in your repo, for example: [https://github.com/CogNet-5GPPP/demos_public/tree/master/demos/Dockers](https://github.com/CogNet-5GPPP/demos_public/tree/master/demos/Dockers)
+7. Submit all the code and files to Github following the sample in your repo, for example: [https://github.com/CogNet-5GPPP/CogNet_services/tree/master/demos/Dockers](https://github.com/CogNet-5GPPP/CogNet_services/tree/master/demos/Dockers)
 
-8. Setup in Jenkins the playbook to exercise de demo following the example from [https://github.com/CogNet-5GPPP/Apis_public/tree/master/helloworlds/ansible](https://github.com/CogNet-5GPPP/Apis_public/tree/master/helloworlds/ansible)
+8. Setup in Jenkins the playbook to exercise de demo following the example from [https://github.com/CogNet-5GPPP/CogNet_Apis/tree/master/helloworlds/ansible](https://github.com/CogNet-5GPPP/CogNet_Apis/tree/master/helloworlds/ansible)
 
 ## Connectivity
 
@@ -239,7 +239,7 @@ The SUPA ECA of a new value is the same employed in the Policy definition throug
  2. Push new policy definition to *newpolicy* topic on Kafka
  3. Wait some minutes
 
- More info available in [https://github.com/CogNet-5GPPP/Apis_public/blob/master/helloworlds/policy/README.md](https://github.com/CogNet-5GPPP/Apis_public/blob/master/helloworlds/policy/README.md)
+ More info available in [https://github.com/CogNet-5GPPP/CogNet_Apis/blob/master/helloworlds/policy/README.md](https://github.com/CogNet-5GPPP/CogNet_Apis/blob/master/helloworlds/policy/README.md)
 
 
 ## Dockers

@@ -1,7 +1,7 @@
 # Warning
 
 All ips shown in this example are not updated, they are example ones.
-Each time CogNet infrastructure is deployed different servers get new dynamic ips. There is an automatically updated list of those ips/hosts combination in [hosts](https://github.com/CogNet-5GPPP/demos_public/blob/master/hosts) file from demos_public repository.
+Each time CogNet infrastructure is deployed different servers get new dynamic ips. There is an automatically updated list of those ips/hosts combination in [hosts](https://github.com/CogNet-5GPPP/CogNet_services/blob/master/hosts) file from CogNet_services repository.
 
 
 ## Navigation
@@ -199,7 +199,7 @@ kafka-python
 
 ## Upload project to github
 
-Upload to [https://github.com/CogNet-5GPPP/demos_public/](https://github.com/CogNet-5GPPP/demos_public/) repository.
+Upload to [https://github.com/CogNet-5GPPP/CogNet_services/](https://github.com/CogNet-5GPPP/CogNet_services/) repository.
 
 Upload to **demos/Dockers/** folder.
 
@@ -218,7 +218,7 @@ Upload to **demos/Dockers/** folder.
 
     - name: clone github repository
       git:
-        repo: git@github.com:CogNet-5GPPP/demos_public.git
+        repo: git@github.com:CogNet-5GPPP/CogNet_services.git
         dest: /home/cognet/repo
         accept_hostkey: yes
         key_file: /home/cognet/rsa
@@ -274,7 +274,7 @@ _**Please use lowercase for all the strings modified for your specific demo, inc
 * Go to your Jenkins installation
 * New Item (Freestyle project)
 * Select Git as *Source code Management*
-* Add Git repository (https://github.com/CogNet-5GPPP/demos_public/)
+* Add Git repository (https://github.com/CogNet-5GPPP/CogNet_services/)
 * Set GitHub Project credentials
 * Select build steps and add Invoke Ansible Playbook
 * Set relative playbook file (ansible.yml) path from github

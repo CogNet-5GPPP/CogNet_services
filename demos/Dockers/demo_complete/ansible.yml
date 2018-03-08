@@ -6,7 +6,7 @@
 
     - name: clone github repository
       git:
-        repo: git@github.com:CogNet-5GPPP/demos_public.git
+        repo: git@github.com:CogNet-5GPPP/CogNet_services.git
         dest: /home/cognet/repo
         accept_hostkey: yes
         key_file: /home/cognet/rsa

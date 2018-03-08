@@ -16,7 +16,7 @@ curl -v -X GET http://cognet:here4cognet@[docker_ip]:4242/containers/your_docker
 curl -v -X GET http://cognet:here4cognet@[docker_ip]:4242/containers/your_docker_container_name/logs?stderr=1&follow=1
 ```
 
-_**In order to get the specific IP address of any Common Infrastructure machine check the hosts file**_ [https://github.com/CogNet-5GPPP/demos_public/blob/master/hosts](https://github.com/CogNet-5GPPP/demos_public/blob/master/hosts)
+_**In order to get the specific IP address of any Common Infrastructure machine check the hosts file**_ [https://github.com/CogNet-5GPPP/CogNet_services/blob/master/hosts](https://github.com/CogNet-5GPPP/CogNet_services/blob/master/hosts)
 
 your_docker_container_name must be the same than the one you set up in your ansible.yml file:
 

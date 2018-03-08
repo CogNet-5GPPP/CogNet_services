@@ -7,7 +7,7 @@ If that condition is met, *Policy Manager* will execute an action with certain p
 # Warning
 
 All ips shown in this example are not updated, they are example ones.
-Each time CogNet infrastructure is deployed different servers get new dynamic ips. There is an automatically updated list of those ips/hosts combination in [hosts](https://github.com/CogNet-5GPPP/demos_public/blob/master/hosts) file from demos_public repository.
+Each time CogNet infrastructure is deployed different servers get new dynamic ips. There is an automatically updated list of those ips/hosts combination in [hosts](https://github.com/CogNet-5GPPP/CogNet_services/blob/master/hosts) file from CogNet_services repository.
 
 # Content
 
@@ -319,7 +319,7 @@ Current names for this demo will be:
 
     - name: clone github repository
       git:
-        repo: git@github.com:CogNet-5GPPP/demos_public.git
+        repo: git@github.com:CogNet-5GPPP/CogNet_services.git
         dest: /home/cognet/repo
         accept_hostkey: yes
         key_file: /home/cognet/rsa
@@ -370,14 +370,14 @@ Current names for this demo will be:
         api_version=1.18
 ```
 
-For more information, please refer to [ansible helloworld description](https://github.com/CogNet-5GPPP/Apis_public/tree/master/helloworlds/ansible)
+For more information, please refer to [ansible helloworld description](https://github.com/CogNet-5GPPP/CogNet_Apis/tree/master/helloworlds/ansible)
 
 # Create Jenkins project
 
 * Go to [Jenkins](http://yourJenkinsIp:8080/)
 * New Item (Freestyle project)
 * Select Git as *Source code Management*
-* Add Git repository [https://github.com/CogNet-5GPPP/demos_public](https://github.com/CogNet-5GPPP/demos_public)
+* Add Git repository [https://github.com/CogNet-5GPPP/CogNet_services](https://github.com/CogNet-5GPPP/CogNet_services)
 * Set GitHub Project credentials
 * Select build steps and add Invoke Ansible Playbook
 * Set relative playbook file (ansible.yml) path from github
@@ -391,5 +391,5 @@ For more information, please refer to [ansible helloworld description](https://g
 
 [Docker](http://docker.io/)
 [Ansible](http://ansible.com/)
-[Policy helloworld](https://github.com/CogNet-5GPPP/Apis_public/tree/master/helloworlds/policy)
+[Policy helloworld](https://github.com/CogNet-5GPPP/CogNet_Apis/tree/master/helloworlds/policy)
 

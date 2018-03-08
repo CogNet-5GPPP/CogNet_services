@@ -8,7 +8,7 @@ If this condition is met *Policy Manager* will trigger an action with fixed para
 # Warning
 
 All ips shown in this example are not updated, they are example ones.
-Each time CogNet infrastructure is deployed different servers get new dynamic ips. There is an automatically updated list of those ips/hosts combination in [hosts](https://github.com/CogNet-5GPPP/demos_public/blob/master/hosts) file from demos_public repository.
+Each time CogNet infrastructure is deployed different servers get new dynamic ips. There is an automatically updated list of those ips/hosts combination in [hosts](https://github.com/CogNet-5GPPP/CogNet_services/blob/master/hosts) file from CogNet_services repository.
 
 # Docker components
 Following we are going to explain the content and working of the components of the Docker:
